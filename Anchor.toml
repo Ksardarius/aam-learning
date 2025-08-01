@@ -1,0 +1,28 @@
+[toolchain]
+package_manager = "yarn"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+aam_learning = "ezysgxbCQG6D3bjcCqVNEq7K1vGov7uWYk4h81zmkMx"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[test.validator]
+url = "http://127.0.0.1:8899" # Or your local validator URL
+faucet_url = "http://127.0.0.1:8899" # Faucet typically runs on the same port as validator
+faucet_sol = "100" # Fund the wallet with 100 SOL (or more if needed)
+# You can also add specific keypairs to be funded for tests:
+# fund = [
+#   "../target/deploy/my_other_keypair-keypair.json" # Path to other keypairs to fund
+# ]
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
